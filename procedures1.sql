@@ -1,0 +1,34 @@
+
+-- procedure
+
+-- CREATE PROCEDURE NOME_procedure IS VARIAVEIS BEGIN bloco lógico END;
+
+
+-- procedure
+CREATE OR REPLACE PROCEDURE add_segmercado(p_ID IN SEGMERCADO.ID%type, p_DESCRICAO IN SEGMERCADO.DESCRICAO%type)
+AS
+BEGIN
+    INSERT INTO SEGMERCADO (ID, DESCRICAO) VALUES (p_ID, UPPER(p_DESCRICAO)); 
+    COMMIT;
+END;
+
+
+
+SELECT * FROM SEGMERCADO s;
+
+call USERX.add_segmercado(4, 'Farmaceutico');
+
+SELECT * FROM SEGMERCADO s;
+
+DROP PROCEDURE incluir_segmercado3;
+
+
+
+-- print de saída
+DECLARE
+	V_ID        SEGMERCADO.ID%TYPE := 1;
+	v_DESCRICAO SEGMERCADO.DESCRICAO%type;
+BEGIN
+	SELECT DESCRICAO INTO v_DESCRICAO FROM SEGMERCADO WHERE ID = v_ID;
+	dbms_output.put_line(v_DESCRICAO);
+END;
